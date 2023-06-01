@@ -7,11 +7,9 @@ read tarjetaRed
 echo "Escoge la contraseña de tu encriptación de red | min: 32 caracteres"
 read claveEncriptacionRed
 
-#Calcula el numero de caracteres de la contraseña con el #
 longitud=${#claveEncriptacionRed}
 echo "La longitud de la contraseña es: $longitud caracteres."
 
-#Compara longitud en caso de ser menor de 32 se para
 if [ $longitud -ge 32 ]; then
     echo "La contraseña tiene 32 caracteres."
 else
@@ -22,21 +20,14 @@ fi
 
 #Inicio
 sudo apt-get update -y
-#Paquetes para uso de repositorios seguros HTTPS
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
-#Claves GPG y volcarlas en /usr/share/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-#Añadir la direccion de los repositorios al sistema
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-#Actualizar el repositorio
 sudo apt-get update -y
-#Instalar Docker
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-#Descargar Docker Compose
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#Dar permisos para ejecutar al Docker Compose
 sudo chmod +x /usr/local/bin/docker-compose
-#Creacion docker compose - Redirije el contenido del EOF al archivo indicado con > archivoDestino
+#Creacion docker compose
 cat <<EOF > docker-compose.yml
 version: '3.7'
 services:
@@ -111,7 +102,6 @@ networks:
     external:
       name: encriptadisimo
 EOF
-#Creacion filebeat - Redirije el contenido del EOF al archivo indicado con > archivoDestino
 cat <<EOF > filebeat.yml
 filebeat.inputs:
 - type: log
@@ -143,7 +133,6 @@ setup.kibana:
 fields:
   event.dataset: keyword
 EOF
-#Creacion logstash - Redirije el contenido del EOF al archivo indicado con > archivoDestino
 cat <<EOF > logstash.conf
 input {
   beats {
@@ -193,7 +182,6 @@ output {
   }
 }
 EOF
-#Creacion suricata - Redirije el contenido del EOF al archivo indicado con > archivoDestino
 cat <<EOF > suricata.yaml
 %YAML 1.1
 ---
@@ -315,7 +303,6 @@ tls-log:
   append: yes
   extended: yes
 EOF
-#Creacion kibana - Redirije el contenido del EOF al archivo indicado con > archivoDestino
 cat <<EOF > kibana.yml
 elasticsearch.hosts: ["http://elasticsearch:9200/"]
 
@@ -328,9 +315,9 @@ EOF
 sudo chown root:root filebeat.yml
 sudo chmod a+r filebeat.yml
 sudo chmod go-w filebeat.yml
-#Git clone de suricata
+#Git clone
 git clone https://github.com/OISF/suricata.git
-# Reglas de Suricata y permisos de suricata
+# Rules Suricata
 sudo mkdir /var/lib/suricata
 sudo mkdir /var/lib/suricata/rules
 sudo mkdir /etc/suricata
@@ -339,10 +326,7 @@ sudo mv suricata/etc/classification.config /etc/suricata/
 sudo chmod 777 -R /etc/suricata/
 sudo mv suricata/rules/* /var/lib/suricata/rules/
 sudo chmod 777 -R /var/lib/suricata/
-# Red Encriptada de Docker
+# Red Encriptada
 sudo docker swarm init
 sudo docker network create --opt encrypted --attachable --driver overlay encriptadisimo
-#Levantar el servicio
 sudo docker-compose up -d
-echo "SIEM montado correctamente" 
-echo "Para entrar en kibana --> http://localhost:5601"
