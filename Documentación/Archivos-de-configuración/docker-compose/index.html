@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Rodrigo Chavez" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Docker-Compose.yml - SIEM Proyecto</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Docker-Compose.yml";
+        var mkdocs_page_input_path = "Documentaci\u00f3n/Archivos-de-configuraci\u00f3n/docker-compose.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> SIEM Proyecto
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Introducci%C3%B3n/Introducci%C3%B3n/">Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Introducci%C3%B3n/Funcionamiento-del-SIEM/">Funcionamiento del SIEM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Instalación</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Instalaci%C3%B3n/git/">GITHUB</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentación</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Docker</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Docker/docker/">Instalación Docker</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Docker/docker-compose/">Instalación Docker Compose</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Docker/RedEncriptadaconDocker/">Red Encriptada con Docker</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Archivos-de-configuración</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Docker-Compose.yml</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../filebeat/">Filebeat.yml</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../logstash/">Logstash.yml</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../suricata/">Suricata.yml</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">SIEM Proyecto</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Documentación &raquo;</li>
+          <li>Archivos-de-configuración &raquo;</li>
+      <li>Docker-Compose.yml</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="docker-composeyml">Docker-Compose.yml<a class="headerlink" href="#docker-composeyml" title="Permanent link">&para;</a></h1>
+<p>El archivo docker-compose.yml contiene la configuración de varios servicios que forman parte del sistema. Para facilitar la comprensión, explicaremos cada servicio por separado.</p>
+<p>Comenzando con el servicio de Elasticsearch: Es importante destacar que todos los servicios utilizan la misma versión, en este caso la 7.15.2. Es crucial tener la misma versión en un sistema con servicios interconectados para evitar incompatibilidades y fallos de seguridad.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">elasticsearch</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.elastic.co/elasticsearch/elasticsearch:7.15.2</span>
+</code></pre></div>
+
+<p>Dentro del archivo de Docker Compose, el servicio de Elasticsearch es fundamental ya que todos los demás servicios dependen de él. Si Elasticsearch falla, todos los servicios que dependen de él dejarán de funcionar. Por esta razón, se verifica constantemente si Elasticsearch está operativo. En caso de detectar un fallo, los demás servicios se detendrán y esperarán a que Elasticsearch se recupere. La configuración de Elasticsearch es más precisa que la de otros servicios. </p>
+<div class="codehilite"><pre><span></span><code><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+</code></pre></div>
+
+<p>En este caso, se encuentra en el modo "single-node", lo que significa que no hay más nodos y Elasticsearch funciona de forma independiente y segura.</p>
+<div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;discovery.type=single-node&quot;</span><span class="w">      </span><span class="c1"># Tipo de descubrimiento para Elasticsearch</span>
+</code></pre></div>
+
+<p>Pasando al servicio de <strong>Kibana:</strong> Este servicio es más independiente y no afecta directamente a los demás servicios. Si solo se produce un fallo en Kibana, los demás servicios seguirán funcionando normalmente. Kibana utiliza el puerto predeterminado y se conecta a Elasticsearch para recibir información y datos.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ELASTICSEARCH_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;http://elasticsearch:9200&gt;</span><span class="w">  </span><span class="c1"># URL de Elasticsearch</span>
+</code></pre></div>
+
+<p>En cuanto al servicio de <strong>Filebeat:</strong> Este servicio es un emisor que centraliza los logs de diferentes ubicaciones. Es importante resaltar que se configura con permisos de solo lectura (:ro) para mayor seguridad. Al no requerir escritura, se reduce un punto de vulnerabilidad en el sistema </p>
+<div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro</span><span class="w"> </span>
+</code></pre></div>
+
+<p>El servicio de <strong>Logstash:</strong> se encarga de procesar y enriquecer los datos de los eventos antes de enviarlos a Elasticsearch. Realiza tareas como la conversión y eliminación de datos críticos o sensibles. Logstash utiliza su puerto por defecto y también depende de Elasticsearch para enviar los datos procesados..</p>
+<p>Por otro lado, el servicio de <strong>Suricata</strong> es una herramienta de detección de amenazas y prevención de intrusiones en red. Su configuración es ligeramente diferente, ya que vigila constantemente la red y requiere algunas configuraciones adicionales. También se configura como de solo lectura (:ro) debido a que es un sistema de eventos en tiempo real. Vigila las amenazas y detecta cualquier actividad maliciosa para minimizar el daño posible. Se especifica la interfaz a la que Suricata estará atento y se pueden configurar diferentes opciones según las necesidades.</p>
+<p>Finalmente, el archivo de Docker Compose también incluye la versión del mismo y los volúmenes necesarios para almacenar los datos de Elasticsearch</p>
+<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./suricata.yaml:/etc/suricata/suricata.yaml:ro</span><span class="w">       </span><span class="c1"># Archivo de configuración de Suricata</span>
+<span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c /etc/suricata/suricata.yaml -i eth0</span><span class="w">     </span><span class="c1"># Comando para ejecutar Suricata</span>
+</code></pre></div>
+
+<p>También hay que especificar la interfaz que vigila y se puede especificar con distitnas opciones.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.7&#39;</span><span class="w">  </span><span class="c1"># Versión de la sintaxis del archivo docker-compose</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">  </span><span class="c1"># Servicio de Elasticsearch</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.elastic.co/elasticsearch/elasticsearch:7.15.2</span><span class="w">  </span><span class="c1"># Imagen utilizada para el contenedor</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="w">  </span><span class="c1"># Nombre del contenedor</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node.name=elasticsearch</span><span class="w">  </span><span class="c1"># Configuración del nombre del nodo Elasticsearch</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster.name=es-docker-cluster</span><span class="w">  </span><span class="c1"># Configuración del nombre del clúster Elasticsearch</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bootstrap.memory_lock=true</span><span class="w">  </span><span class="c1"># Configuración para bloquear la memoria</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;ES_JAVA_OPTS=-Xms512m</span><span class="nv"> </span><span class="s">-Xmx512m&quot;</span><span class="w">  </span><span class="c1"># Opciones de configuración para la memoria de Elasticsearch</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;discovery.type=single-node&quot;</span><span class="w">  </span><span class="c1"># Configuración del tipo de descubrimiento del nodo Elasticsearch</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;xpack.security.enabled=false&quot;</span><span class="w">  </span><span class="c1"># Configuración para deshabilitar la seguridad de X-Pack</span>
+<span class="w">    </span><span class="nt">ulimits</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">memlock</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">soft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span><span class="w">  </span><span class="c1"># Límite blando para bloqueo de memoria</span>
+<span class="w">        </span><span class="nt">hard</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span><span class="w">  </span><span class="c1"># Límite duro para bloqueo de memoria</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esdata:/usr/share/elasticsearch/data</span><span class="w">  </span><span class="c1"># Volumen utilizado para almacenar los datos de Elasticsearch</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9200:9200</span><span class="w">  </span><span class="c1"># Mapeo del puerto del contenedor al puerto del host</span>
+
+<span class="w">  </span><span class="nt">kibana</span><span class="p">:</span><span class="w">  </span><span class="c1"># Servicio de Kibana</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.elastic.co/kibana/kibana:7.15.2</span><span class="w">  </span><span class="c1"># Imagen utilizada para el contenedor</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kibana</span><span class="w">  </span><span class="c1"># Nombre del contenedor</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5601:5601</span><span class="w">  </span><span class="c1"># Mapeo del puerto del contenedor al puerto del host</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ELASTICSEARCH_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://elasticsearch:9200/</span><span class="w">  </span><span class="c1"># URL de Elasticsearch</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./kibana.yml:/usr/share/kibana/config/kibana.yml</span><span class="w">  </span><span class="c1"># Volumen utilizado para la configuración de Kibana</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="w">  </span><span class="c1"># Dependencia del servicio de Elasticsearch</span>
+
+<span class="w">  </span><span class="nt">filebeat</span><span class="p">:</span><span class="w">  </span><span class="c1"># Servicio de Filebeat</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.elastic.co/beats/filebeat:7.15.2</span><span class="w">  </span><span class="c1"># Imagen utilizada para el contenedor</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filebeat</span><span class="w">  </span><span class="c1"># Nombre del contenedor</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro</span><span class="w">  </span><span class="c1"># Volumen utilizado para la configuración de Filebeat</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log:/var/log:ro</span><span class="w">  </span><span class="c1"># Mapeo del directorio de logs del host al contenedor</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="w">  </span><span class="c1"># Dependencia del servicio de Elasticsearch</span>
+
+<span class="w">  </span><span class="nt">logstash</span><span class="p">:</span><span class="w">  </span><span class="c1"># Servicio de Logstash</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.elastic.co/logstash/logstash:7.15.2</span><span class="w">  </span><span class="c1"># Imagen utilizada para el contenedor</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logstash</span><span class="w">  </span><span class="c1"># Nombre del contenedor</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro</span><span class="w">  </span><span class="c1"># Volumen utilizado para la configuración de Logstash</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5044:5044</span><span class="w">  </span><span class="c1"># Mapeo del puerto del contenedor al puerto del host</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="w">  </span><span class="c1"># Dependencia del servicio de Elasticsearch</span>
+
+<span class="w">  </span><span class="nt">suricata</span><span class="p">:</span><span class="w">  </span><span class="c1"># Servicio de Suricata</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jasonish/suricata:latest</span><span class="w">  </span><span class="c1"># Imagen utilizada para el contenedor</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/suricata:/var/log/suricata</span><span class="w">  </span><span class="c1"># Mapeo del directorio de logs del host al contenedor</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./suricata.yaml:/etc/suricata/suricata.yaml:ro</span><span class="w">  </span><span class="c1"># Volumen utilizado para la configuración de Suricata</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/suricata/rules:/var/lib/suricata/rules</span><span class="w">  </span><span class="c1"># Mapeo del directorio de reglas del host al contenedor</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/suricata/classification.config:/etc/suricata/classification.config</span><span class="w">  </span><span class="c1"># Mapeo del archivo de clasificación del host al contenedor</span>
+<span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span><span class="w">  </span><span class="c1"># Modo de red utilizado (comparte la red del host)</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c /etc/suricata/suricata.yaml -i enp0s3</span><span class="w">  </span><span class="c1"># Comando a ejecutar dentro del contenedor de Suricata</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">esdata</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span><span class="w">  </span><span class="c1"># Tipo de driver de volumen utilizado (local)</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">default</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">encriptadisimo</span><span class="w">  </span><span class="c1"># Nombre de la red externa utilizada</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../Docker/RedEncriptadaconDocker/" class="btn btn-neutral float-left" title="Red Encriptada con Docker"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../filebeat/" class="btn btn-neutral float-right" title="Filebeat.yml">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../Docker/RedEncriptadaconDocker/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../filebeat/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

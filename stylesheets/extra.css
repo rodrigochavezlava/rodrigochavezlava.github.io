@@ -1,0 +1,28 @@
+/* Estilos propios */
+.icon {
+  pointer-events: none;
+}
+
+.rst-footer-buttons {
+  display: none;
+}
+
+.wy-side-nav-search {
+  background-color: #07773f !important;
+}
+
+.icon-home {
+  color: #07773f;
+}
+
+.caption {
+  color: #0c9e55 !important;
+}
+
+.wy-menu {
+  background-color: rgb(34, 33, 33) !important;
+}
+
+.wy-side-scroll {
+  background-color: rgb(34, 33, 33) !important;
+}

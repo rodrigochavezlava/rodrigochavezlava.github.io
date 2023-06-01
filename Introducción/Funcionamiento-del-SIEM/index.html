@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Rodrigo Chavez" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Funcionamiento del SIEM - SIEM Proyecto</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Funcionamiento del SIEM";
+        var mkdocs_page_input_path = "Introducci\u00f3n/Funcionamiento-del-SIEM.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> SIEM Proyecto
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Introducci%C3%B3n/">Introducción</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Funcionamiento del SIEM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tecnologias-implementadas">Tecnologías Implementadas</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Instalación</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Instalaci%C3%B3n/git/">GITHUB</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentación</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Docker</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Docker/docker/">Instalación Docker</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Docker/docker-compose/">Instalación Docker Compose</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Docker/RedEncriptadaconDocker/">Red Encriptada con Docker</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Archivos-de-configuración</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Archivos-de-configuraci%C3%B3n/docker-compose/">Docker-Compose.yml</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Archivos-de-configuraci%C3%B3n/filebeat/">Filebeat.yml</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Archivos-de-configuraci%C3%B3n/logstash/">Logstash.yml</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Documentaci%C3%B3n/Archivos-de-configuraci%C3%B3n/suricata/">Suricata.yml</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">SIEM Proyecto</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Introducción &raquo;</li>
+      <li>Funcionamiento del SIEM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="funcionamiento-del-siem">Funcionamiento del SIEM<a class="headerlink" href="#funcionamiento-del-siem" title="Permanent link">&para;</a></h1>
+<p>Suricata monitorea el tráfico en busca de actividades maliciosas y genera eventos de seguridad. Estos eventos son capturados por Filebeat, que a su vez recoge todos los logs del sistema.</p>
+<p>Esto está configurado en los archivos que veremos más adelante. Los logs, tanto generados por Filebeat como por Suricata, son enviados a Logstash para su procesamiento.</p>
+<p>Logstash realiza tareas de filtrado, transformación y enriquecimiento de los datos, preparándolos para su almacenamiento y análisis.</p>
+<p>Los eventos procesados son almacenados e indexados en Elasticsearch, una base de datos distribuida en tiempo real. Kibana interactúa con Elasticsearch para visualizar y explorar los datos almacenados, permitiendo la creación de cuadros de datos, gráficos y paneles de control.</p>
+<h2 id="tecnologias-implementadas">Tecnologías Implementadas<a class="headerlink" href="#tecnologias-implementadas" title="Permanent link">&para;</a></h2>
+<p><strong>SIEM:</strong>
+El Security Information and Event Management (SIEM) es una tecnología esencial en ciberseguridad que recopila y analiza datos y registros en tiempo real. Proporciona una visión completa de las actividades y eventos de seguridad en una red, permitiendo detectar y responder rápidamente a posibles amenazas y ataques.</p>
+<p><strong>Docker Compose:</strong>
+Docker Compose es una herramienta poderosa que simplifica la gestión de aplicaciones compuestas por múltiples contenedores. Permite definir la configuración de la aplicación en un archivo YAML y ejecutarlo fácilmente para crear y desplegar todos los contenedores con la configuración predefinida.</p>
+<p><strong>Suricata:</strong>
+Suricata es un sistema de prevención de intrusiones en red (IPS) y motor de detección de amenazas (IDS) de código abierto. Su función es monitorear y analizar el tráfico de red en tiempo real, buscando actividades maliciosas y anómalas. Con reglas y firmas, Suricata puede detectar y prevenir ataques, proporcionando una capa adicional de seguridad en la infraestructura de red.</p>
+<p><strong>Filebeat:</strong>
+Filebeat es un agente ligero diseñado para recopilar, enviar y procesar logs y datos desde diferentes archivos y ubicaciones. Al integrarse con la pila ELK, Filebeat permite realizar un seguimiento en tiempo real de los cambios en los archivos y enviar los datos a Elasticsearch o Logstash para su almacenamiento y análisis, facilitando la gestión y recolección de logs en entornos distribuidos.</p>
+<p><strong>Logstash:</strong>
+Logstash es una herramienta flexible y potente de procesamiento y enriquecimiento de datos. Actúa como un canalizador de datos, extrayendo información de diversas fuentes, aplicando filtros y transformaciones para mejorar la estructura y calidad de los datos. Logstash se integra con Elasticsearch y otras herramientas, desempeñando un papel clave en el flujo de datos de un sistema de registro y análisis de logs.</p>
+<p><strong>Elasticsearch:</strong>
+Elasticsearch es un motor de búsqueda y análisis de datos distribuido y de código abierto. Ofrece una solución escalable para almacenar, indexar y buscar grandes volúmenes de datos en tiempo real. Con su modelo de búsqueda basado en documentos, Elasticsearch permite realizar consultas complejas y avanzadas sobre los datos indexados, y se integra con otras herramientas de la pila ELK para el análisis y la visualización de datos.</p>
+<p><strong>Kibana:</strong>
+Kibana es una plataforma intuitiva y potente de visualización y análisis de datos diseñada para trabajar con Elasticsearch. Permite explorar, visualizar y compartir datos almacenados en Elasticsearch de manera interactiva. Con Kibana, se pueden crear gráficos, tablas y paneles personalizados, realizar búsquedas y aplicar filtros en tiempo real, facilitando el monitoreo, análisis y visualización de datos en entornos de aplicaciones y sistemas.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Introducci%C3%B3n/" class="btn btn-neutral float-left" title="Introducción"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Instalaci%C3%B3n/git/" class="btn btn-neutral float-right" title="GITHUB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Introducci%C3%B3n/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Instalaci%C3%B3n/git/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
